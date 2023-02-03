@@ -1,48 +1,34 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "@/styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
+import UseAccount from "@/components/UseAccount";
 import useIsMounted from "@/hooks/useIsMounted";
-import { useAddRecentTransaction } from "@rainbow-me/rainbowkit";
+import UseBalance from "@/components/UseBalance";
+import SentTransaction from "@/components/SentTransaction";
 
 export default function Home() {
-  const { address, isConnecting, isDisconnected } = useAccount();
+  const { address, isConnecting, isDisconnected, isConnected } = useAccount();
   const mounted = useIsMounted();
-  const addRecentTransaction = useAddRecentTransaction();
 
   return (
     <>
-      <ConnectButton
-        label="Sign in"
-        showBalance={{
-          smallScreen: false,
-          largeScreen: true,
-        }}
-        accountStatus={{
-          smallScreen: "avatar",
-          largeScreen: "full",
-        }}
-      />
-      <div style={{marginTop:"30px"}}>
-        {mounted ? (
-          address && <div>your address is : {address}</div>
-        ) : (
-          <div>please connect your wallet</div>
-        )}
-      </div>
-      {/* <div>
-        <button
-          onClick={() => {
-            addRecentTransaction({
-              hash: "0x...",
-              description: "...",
-            });
+      <div>
+        <ConnectButton
+          label="Sign in"
+          showBalance={{
+            smallScreen: false,
+            largeScreen: true,
           }}
-        >
-          Add recent transaction
-        </button>
-      </div> */}
+          accountStatus={{
+            smallScreen: "avatar",
+            largeScreen: "full",
+          }}
+        />
+      </div>
+      <div>{mounted ? <UseAccount /> : ""}</div>
+      <div>{mounted ? <UseBalance /> : ""}</div>
+      <div>{mounted ? isConnected && <SentTransaction /> : ""}</div>
+
+      
     </>
   );
 }
