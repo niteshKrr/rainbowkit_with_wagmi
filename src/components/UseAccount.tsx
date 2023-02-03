@@ -9,7 +9,7 @@ const UseAccount = () => {
   if (isConnecting) return <div style={{marginTop:"20px"}}>Connecting…</div>;
   if (isDisconnected) return <div style={{marginTop:"20px"}}>Disconnected</div>;
   return (
-    <div style={{marginTop:"20px"}}>
+    <div style={{marginTop:"40px"}}>
       {address ? (
         <div>your address is : {address}</div>
       ) : (

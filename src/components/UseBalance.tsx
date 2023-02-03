@@ -14,7 +14,7 @@ const UseBalance = () => {
   if (isError) return <div>Error fetching balance</div>;
   return (
     <div>
-      Balance: {data?.formatted} {data?.symbol}
+      Balance is : {data?.formatted} {data?.symbol}
     </div>
   );
 };

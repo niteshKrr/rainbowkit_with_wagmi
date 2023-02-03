@@ -1,7 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDebounce } from "use-debounce";
-import { usePrepareSendTransaction, useSendTransaction, useWaitForTransaction } from "wagmi";
+import {
+  usePrepareSendTransaction,
+  useSendTransaction,
+  useWaitForTransaction,
+} from "wagmi";
 import { utils } from "ethers";
 
 const SentTransaction = () => {
@@ -16,23 +20,22 @@ const SentTransaction = () => {
       to: debouncedTo,
       value: debouncedAmount ? utils.parseEther(debouncedAmount) : undefined,
     },
-});
+  });
 
-const {data, sendTransaction } = useSendTransaction(config);
+  const { data, sendTransaction } = useSendTransaction(config);
 
   const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
-    sendTransaction?.()
+    event.preventDefault();
+    sendTransaction?.();
     // console.log(event);
   };
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
-  })
-
+  });
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div style={{ marginTop: "40px" }}>
       <input
         aria-label="Recipient"
         onChange={(e) => setTo(e.target.value)}
