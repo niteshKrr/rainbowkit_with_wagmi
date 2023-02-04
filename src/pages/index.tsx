@@ -6,6 +6,7 @@ import UseBalance from "@/components/UseBalance";
 import SentTransaction from "@/components/SentTransaction";
 import { MintNFT } from "@/components/ContractWrite";
 import { SignMessage } from "@/components/SignMessage";
+import { MintNFTForm } from "@/components/DynamicContractWrite";
 
 export default function Home() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount();
@@ -31,6 +32,7 @@ export default function Home() {
       <div>{mounted ? isConnected && <SentTransaction /> : ""}</div>
       <div>{mounted ? isConnected && <MintNFT /> : ""}</div>
       <div>{mounted ? isConnected && <SignMessage /> : ""}</div>
+      <div>{mounted ? isConnected && <MintNFTForm /> : ""}</div>
     </>
   );
 }
