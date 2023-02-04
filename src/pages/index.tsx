@@ -28,7 +28,7 @@ export default function Home() {
         />
       </div>
       <div>{mounted ? <UseAccount /> : ""}</div>
-      <div>{mounted ? <UseBalance /> : ""}</div>
+      <div>{mounted ? isConnected && <UseBalance /> : ""}</div>
       <div>{mounted ? isConnected && <SentTransaction /> : ""}</div>
       <div>{mounted ? isConnected && <MintNFT /> : ""}</div>
       <div>{mounted ? isConnected && <SignMessage /> : ""}</div>
